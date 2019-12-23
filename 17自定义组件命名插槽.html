@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+  <script src='./vue.js'></script>
+  <title>自定义组件-命名插槽</title>
+</head>
+
+<body>
+  <div id='app'>
+    <container>
+      <template v-slot:header>这是header</template>
+      <!-- <template v-slot:body>这是body</template> -->
+      这是body
+      <template v-slot:footer>这是footer</template>
+    </container>
+  </div>
+  <script>
+    Vue.component('container', {
+      template: `
+      <div class="container">
+        <div>
+          <slot name="header"></slot>
+        </div>
+        <div>
+          <slot></slot>
+        </div>
+        <div>
+          <slot name="footer"></slot>
+        </div>
+      </div>
+      `
+    })
+
+    new Vue({
+      el: '#app',
+      data: {
+
+      }
+    })
+  </script>
+</body>
+
+</html>

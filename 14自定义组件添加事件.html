@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+  <script src='./vue.js'></script>
+  <title>自定义组件-添加事件</title>
+</head>
+
+<body>
+  <div id='app'>
+    <blog-item v-for="blog in blogs" :blog="blog" @check-changed="checkChanged"></blog-item>
+    <h1>选中的博客：</h1>
+    <div v-for="blog in selected_blogs">
+      {{blog.title}}
+    </div>
+  </div>
+  <script>
+    Vue.component("blog-item", {
+      props: ['blog'],
+      template: `
+        <div>
+          <span>{{blog.title}}</span>
+          <input type="checkbox" @click="onCheck">
+        </div>
+      `,
+      methods: {
+        onCheck() {
+          this.$emit("check-changed", this.blog)
+        }
+      }
+    })
+    new Vue({
+      el: '#app',
+      data: {
+        blogs: [{
+          title: "如何学好Vue？",
+          id: "1"
+        }, {
+          title: "前后端分离项目？",
+          id: "2"
+        }],
+        selected_blogs: []
+      },
+      methods: {
+        checkChanged(blog) {
+          // indexOf：获取某个元素在数组中的位置，如果返回值为非负数，那么就是存在，就是下标
+          // 否则，代表这个元素在数组中不存在
+          let index = this.selected_blogs.indexOf(blog)
+          if (index >= 0) {
+            this.selected_blogs.splice(index, 1)
+          } else {
+            this.selected_blogs.push(blog)
+          }
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

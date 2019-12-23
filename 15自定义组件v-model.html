@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+  <script src='./vue.js'></script>
+  <title>自定义组件v-model</title>
+</head>
+
+<body>
+  <div id='app'>
+    <Stepper v-model="goods_count"></Stepper>
+  </div>
+  <script>
+    // 计步器
+    Vue.component("Stepper", {
+      props: ['count'],
+      // model：用来配置v-model的表现形式
+      model: {
+        event: "count-changed",
+        // event: "count-changed"是告诉v-model，后面触发哪个事件的时候要修改属性。
+        prop: "count"
+      },
+      template: `
+        <div>
+          <button @click="substract">-</button>
+          <span>{{count}}</span>
+          <button @click="add">+</button>
+        </div>
+      `,
+      methods: {
+        substract() {
+          // 这个里面不需要修改this.count的值，只要把结果传出去就可以了
+          this.$emit("count-changed", this.count - 1)
+        },
+        add() {
+          this.$emit("count-changed", this.count + 1)
+        }
+      }
+    })
+
+    new Vue({
+      el: '#app',
+      data: {
+        goods_count: 0
+      },
+      watch: {
+        goods_count: function (newValue, oldValue) {
+          console.log('==========');
+          console.log(newValue);
+          console.log('==========');
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

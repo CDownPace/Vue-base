@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+  <script src='./vue.js'></script>
+  <title></title>
+</head>
+
+<body>
+  <div id='app'>
+    <ul>
+      <li v-for="hero in heros" :key="hero">
+        {{hero}}
+      </li>
+    </ul>
+    <div v-for="(value,key) in user">
+      {{key}}:{{value}}
+    </div>
+    <button @click="update">更新</button>
+    <button @click="popHero">删除最后一个元素</button>
+    <button @click="shiftHero">删除第一个元素</button>
+    <button @click="unshiftHero">在第一个位置添加元素</button>
+    <button @click="spliceHero">splice操作</button>
+    <button @click="concatHero">concat操作</button>
+    <button @click="updateArray">更新数组</button>
+    <button @click="updateObject">更新对象</button>
+  </div>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        heros: ['蜘蛛侠', '钢铁侠', '美国队长'],
+        user: {
+          "username": "zhiliao"
+        }
+      },
+      methods: {
+        update() {
+          // this.heros = ['黑寡妇']
+          // this.heros.slice(0,1)
+          this.heros.push("黑寡妇")
+        },
+        popHero() {
+          this.heros.pop()
+        },
+        shiftHero() {
+          this.heros.shift()
+        },
+        unshiftHero() {
+          this.heros.unshift("绿巨人")
+        },
+        spliceHero() {
+          // 删除元素
+          // this.heros.splice(0,2)
+          // 替换元素
+          // this.heros.splice(2,1,'绿巨人')
+          // 添加元素
+          this.heros.splice(1, 0, '橘绿人')
+        },
+        concatHero() {
+          this.heros = this.heros.concat(['绿巨人', '黑寡妇'])
+        },
+        updateArray() {
+          // this.heros[0] = '绿巨人'
+          Vue.set(this.heros, 0, '绿巨人')
+        },
+        updateObject() {
+          // this.user.username = '绿巨人'
+          // this.user.age = 18
+          Vue.set(this.user, 'age', 18)
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+  <script src='./vue.js'></script>
+  <title></title>
+  <style>
+    .title {
+      font-size: 20px;
+      color: red;
+    }
+
+    .main-title {
+      font-weight: 800;
+    }
+  </style>
+</head>
+
+<body>
+  <div id='app'>
+    <!-- <p v-bind:class="[pclass1,pclass2]">我爱你，中国！</p> -->
+    <!-- <p :class="{title:true,'main-title':strong}">我爱你中国！</p>
+    <button @click="strong=true">文字加粗</button> -->
+
+    <p :style="[pStyle1,pStyle2]">我爱你，中国！</p>
+    <!-- <p :style="{'background-color:backgroundColor'}">我爱你，中国！</p> -->
+  </div>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        pclass1: "title",
+        pclass2: "main-title",
+        strong: false,
+        backgroundColor: "red",
+        pStyle1: {
+          'background-color': "blue",
+          'font-size': "30px"
+        },
+        pStyle2: {
+          "border-bottom": "2px solid #000"
+        },
+      }
+    })
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="./vue.js"></script>
+  <title>02属性绑定</title>
+</head>
+
+<body>
+  <div id="app">
+    <p v-once>{{username}}</p>
+    <!-- v-once点击不会改变值 -->
+    <button @click="username='课堂'">改变</button>
+
+    <!-- 在页面中形成a标签 -->
+    <div v-html="code"></div>
+
+    <!-- 获取图片 -->
+    <img :src="logo" alt="">
+    <!-- <img v-bind: src="logo" alt=""> -->
+
+  </div>
+  <script>
+    new Vue({
+      el: "#app",
+      data: {
+        username: "知了",
+        code: "<a href='https://www.baidu.com/'>百度一下，你就知道！</a>",
+        logo: "https://cn.vuejs.org/images/logo.png"
+      }
+    })
+  </script>
+</body>
+
+</html>

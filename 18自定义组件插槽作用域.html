@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+  <script src='./vue.js'></script>
+  <title>自定义组件-插槽作用域</title>
+</head>
+
+<body>
+  <div id='app'>
+    <!-- <container>
+      <template v-slot:header="headerProps">
+        这是头部区域
+        {{headerProps.navs}}
+      </template>
+      <template v-slot:footer="footerProps">
+        这是底部区域
+        {{footerProps.address}}/{{footerProps.aboutus}}
+      </template>
+    </container> -->
+
+    <container v-slot="props">
+      {{props.navs}}
+    </container>
+  </div>
+  <script>
+    Vue.component("container", {
+      // template: `
+      //   <div>
+      //     <div class="header">
+      //       <slot name="header" :navs="navs"></slot>
+      //     </div>
+      //     <div class="footer">
+      //       <slot name="footer" :address="address" :aboutus="aboutus"></slot>
+      //     </div>
+      //   </div>
+      // `,
+      template: `
+        <div>
+          <div class="header">
+            <slot :navs="navs"></slot>
+          </div>
+        </div>
+      `,
+      data: function () {
+        return {
+          "address": "公司地址",
+          "aboutus": "关于我们",
+          navs: ['网络设置', '路由设置', '设备管理'],
+        }
+      }
+    })
+
+
+    new Vue({
+      el: '#app',
+      data: {
+
+      }
+    })
+  </script>
+</body>
+
+</html>

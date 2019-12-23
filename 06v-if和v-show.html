@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+  <script src='./vue.js'></script>
+  <title></title>
+</head>
+
+<body>
+  <div id='app'>
+    <!-- <div v-show="loginType=='username'">
+      <label>用户名：</label>
+      <input type="text" name="username" placeholder="用户名" key="username">
+    </div>
+    <div v-show="loginType=='email'">
+      <label>邮箱：</label>
+      <input type="text" name="email" placeholder="用户名" key="email">
+    </div>
+    <button @click="changeLoginType">更换登陆类型</button> -->
+
+    <div v-if="role=='superuser'">欢迎来到超级管理员界面！</div>
+    <div v-if="role=='adminuser'">欢迎来到普通管理员界面！</div>
+    <script>
+      new Vue({
+        el: '#app',
+        data: {
+          loginType: "username",
+          role: "superuser"
+        },
+        methods: {
+          changeLoginType() {
+            this.loginType = this.loginType == 'username' ? "email" : "username"
+          }
+        }
+      })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+  <script src='./vue.js'></script>
+  <title></title>
+</head>
+
+<body>
+  <div id='app'>
+    <div :style="{color:danger?'red':'black'}">{{ message.split(" ").reverse().join(" ") }}</div>
+    <div>{{ greet() }}</div>
+    <div>{{ !isAdult }}</div>
+  </div>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        // 条件?条件成立的值:条件不成立的值--这个叫做三目运算符
+        danger: false,
+        // ['hello','wordl'...] =>reverse=> ['china','hello',,,]
+        message: "hello world hello china",
+        isAdult: true
+      },
+      methods: {
+        greet() {
+          return "早上好！"
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+  <script src='./vue.js'></script>
+  <title>自定义组件-插槽</title>
+</head>
+
+<body>
+  <div id='app'>
+    <navigation-link url="https://www.baidu.com/">
+      {{name}}
+    </navigation-link>
+
+    <my-button>立即支付</my-button>
+
+  </div>
+  <script>
+    Vue.component("my-button", {
+      template: `
+        <button>
+          <slot>确定</slot>
+        </button>
+      `
+    })
+
+    Vue.component("navigation-link", {
+      props: ['url'],
+      template: `
+      <div>
+        <a :href="url">谷歌</a>
+        <slot></slot>
+      </div>
+      `,
+      data: function () {
+        return {
+          name: "知了课堂"
+        }
+      }
+    })
+
+    new Vue({
+      el: '#app',
+      data: {
+
+      }
+    })
+  </script>
+</body>
+
+</html>
