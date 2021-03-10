@@ -185,11 +185,13 @@ let vm = new Vue({
 3. 销毁阶段：
   * beforeDestroy：在销毁之前调用。这个时候，所有的东西都是可以使用的。
   * destroyed：被销毁。绑定到vue上的事件，以及下面的组件等都会被销毁。
+  * 
 生命周期函数补充：
-beforeCreate:可以加loading事件
-create:loading结束，可以加一些初始化，实现函数自执行。
-mounted:在这发起后端请求，拿回数据，配合路由钩子做一些事。
-beforeDestory:你确定要删除XXX么？distoryed:当前组件已被删除，清除相关内容。
+
+  * beforeCreate:可以加loading事件
+  * create:loading结束，可以加一些初始化，实现函数自执行。
+  * mounted:在这发起后端请求，拿回数据，配合路由钩子做一些事。
+  * beforeDestory:你确定要删除XXX么？distoryed:当前组件已被删除，清除相关内容。
 ## 过滤器：
 1. 使用：`{{username|strip}}`、`<a :href="url|strip">百度</a>`。
 2. 定义：都是定义一个函数，这个函数的第一个参数永远都是被过滤的那个变量
